@@ -14,7 +14,7 @@ model = YOLO("best (2).pt")
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return jsonify({"message": "do not touch!!"})
 
 def predict(image):
     try:
@@ -55,7 +55,7 @@ def upload():
             filename = photos.save(photo)
             tofa = predict(filename)
             return jsonify({"data": tofa})
-    return 'No file selected for upload.'
+    return jsonify({"message": "upload failed."})
 
 if __name__ == '__main__':
     app.run(debug=False)
